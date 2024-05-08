@@ -31,24 +31,24 @@ fs.readdir(folderPath, (err, items) => {
     console.log('Bundles folder not found');
   }
 
-//   // Itterate through each item in the directory
-//   items.forEach((item) => {
-//     // Construct the full path
-//     const fullPath = path.join(folderPath, item);
+ // Itterate through each item in the directory
+ items.forEach((item) => {
+   // Construct the full path
+   const fullPath = path.join(folderPath, item);
 
-//     // Use fs.statSync to get info about the item
-//     const stats = fs.statSync(fullPath);
+   // Use fs.statSync to get info about the item
+   const stats = fs.statSync(fullPath);
 
-//     // Check if the item is a file
-//     if (stats.isFile()) {
-//       fileCount++;
-//     }
+   // Check if the item is a file
+   if (stats.isFile()) {
+     fileCount++;
+   }
 
-//     // Check if the item is a folder
-//     if (stats.isDirectory()) {
-//       folderCount++;
-//     }
-//   });
+   // Check if the item is a folder
+   if (stats.isDirectory()) {
+     folderCount++;
+   }
+ });
 
   // Display the current path
   console.log("The current directory selected is : " + folderPath + ".");
