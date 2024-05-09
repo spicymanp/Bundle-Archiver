@@ -1,10 +1,11 @@
-import fse from "fs-extra";
+//import fse from "fs-extra";  // I need to figure this one out
+import fs from "fs";
 import path from "path";
 
 const sptRoot = "H:\\EFT-SPT\\user\\mods";
 const bundlesCopy = "H:\\sptBundlesBackup";
 const modsWithBundles = [];
-const mods = fse.readdirSync(sptRoot);
+const mods = fs.readdirSync(sptRoot);
 let numberOfBundles = 0;
 
 function catchError(err) {
@@ -19,10 +20,10 @@ console.log("\nCurrently Installed Mods with Bundles :\n ");
 mods.forEach((mod) => {
   const fullPath = path.join(sptRoot, mod);
   const fullPathWithBundles = path.join(fullPath, "bundles");
-  const modHasBundles = fse.existsSync(fullPathWithBundles);
+  const modHasBundles = fs.existsSync(fullPathWithBundles);
 
   if (modHasBundles) {
-    fse.cp(
+    fs.cp(
       fullPathWithBundles,
       bundlesCopy,
       { force: true, recursive: true },
