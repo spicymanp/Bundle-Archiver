@@ -1,15 +1,46 @@
-import fs from "fs";
+import fse from "fs-extra";
 import path from "path";
 
 const sptRoot = "H:\\EFT-SPT\\user\\mods";
+const bundlesCopy = "H:\\sptBundlesBackup";
 const modsWithBundles = [];
+const mods = fse.readdirSync(sptRoot);
+let numberOfBundles = 0;
 
-const mods = fs.readdirSync(sptRoot);
-console.log("\nCurrently Installed Mods:\n ");
+function catchError(err) {
+  if (err) console.log(err);
+  else {
+    console.log("File written successfully\n");
+  }
+}
+
+console.log("\nCurrently Installed Mods with Bundles :\n ");
+
 mods.forEach((mod) => {
-  console.log("- " + mod);
+  const fullPath = path.join(sptRoot, mod);
+  const fullPathWithBundles = path.join(fullPath, "bundles");
+  const modHasBundles = fse.existsSync(fullPathWithBundles);
+
+  if (modHasBundles) {
+    fse.cp(
+      fullPathWithBundles,
+      bundlesCopy,
+      { force: true, recursive: true },
+      catchError
+    );
+    numberOfBundles++;
+  }
+  console.log(fullPathWithBundles);
+  console.log("\n");
+  console.log("- " + mod + " - " + "'" + fullPath + "'");
 });
 
+console.log("\nTotal Number of Mods Currently Installed : " + mods.length);
+console.log("\nTotal Number of Mods with Bundles : " + numberOfBundles);
+console.log("\n");
+
+// Leaving this here for reference
+//
 // fs.readdir(sptRoot, (err, items) => {
 //   for (let i = 0; i < items.length; i++) {
 //     const item = items[i];
@@ -23,6 +54,3 @@ mods.forEach((mod) => {
 //     }
 //   }
 // });
-
-console.log("\nTotal Number of Mods Currently Installed : " + mods.length);
-console.log("\n");
