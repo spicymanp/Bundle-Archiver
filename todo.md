@@ -1,5 +1,8 @@
 - change the async readdir to sync readdir : https://www.geeksforgeeks.org/node-js-fs-readdirsync-method/
 - print only mods with bundles
+- ask to input spt root folder path
+- detect if current folder is SPT root folder
+- find the spt root folder
 - how to copy folder to different path
 -
 - how to zip up a whole folder
