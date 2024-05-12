@@ -14,3 +14,4 @@
 - log when the last copy was run
 - option to only copy files newer than the last copy
 - colour the text that shows number of mods
+- progress bar for archiving creation
