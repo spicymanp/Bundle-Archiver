@@ -1,1 +1,24 @@
-{"type":"module"}
+{
+  "type": "module",
+  "name": "fika-bundle-transporter",
+  "version": "1.0.0",
+  "description": "Find &amp; copy spt-server bundles.",
+  "main": "transport.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spicymanp/fika-bundle-transporter.git"
+  },
+  "author": "dogs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spicymanp/fika-bundle-transporter/issues"
+  },
+  "homepage": "https://github.com/spicymanp/fika-bundle-transporter#readme",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "ora": "^8.0.1"
+  }
+}
