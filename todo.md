@@ -5,6 +5,7 @@
 ✔ how to zip up a whole folder
 ✔ add little loading dots
 
+- generate an exe of the project
 - compare size of mods with bundles with copy of mods with bundles
 - ask to input spt root folder path
 - detect if current folder is SPT root folder
@@ -17,3 +18,7 @@
 - progress bar for archiving creation
 - proper unit coversion
 - eliminate the need to copy bundles to a temp folder
+
+- build p.js into exe
+- expand on this with functiuonality from main.js
+- (understand differences between require and import)
