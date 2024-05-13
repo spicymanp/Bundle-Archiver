@@ -3,8 +3,12 @@ import path from "path";
 import archiver from "archiver";
 import ora from "ora";
 
-const sptRoot = "H:\\EFT-SPT\\user\\mods";
-const tempBundlesPath = "H:\\sptBundlesTemp\\user\\cache";
+// ---------------------------------------------------------
+//               DIRECTORY STRUCTURE
+// ---------------------------------------------------------
+
+const sptRoot = "./user/mods";
+const tempBundlesPath = "./sptBundlesTemp/user/cache";
 const outputFile = "./modBundlesToSend.zip";
 
 // ---------------------------------------------------------
@@ -23,6 +27,7 @@ mods.forEach((mod) => {
     modsWithBundles.push(fullPathWithBundles);
   }
 });
+
 console.log("\nTotal Number of Mods Currently Installed : " + mods.length);
 console.log(
   "\nTotal Number of Mods with Bundles : " + modsWithBundles.length + "\n"
@@ -68,7 +73,7 @@ console.log(totalDirSize);
 
 const output = fs.createWriteStream(outputFile);
 const archive = archiver("zip", {
-  zlib: { level: 1 }, // Sets the compression level.
+  zlib: { level: 1 }, // Sets the compression level. 1 quickest/largest - 9 slowest/smallest
 });
 
 const spinner = ora("Creating archive...\n").start();
@@ -87,11 +92,9 @@ output.on("close", function () {
   console.log(
     "\nYour bundles archive is ready to upload and can be found in the your SPT root directory.\n"
   );
-  //console.log("Archiver has been finalized and the output file descriptor has closed.");
 });
 
 // This event is fired when the data source is drained no matter what was the data source.
-// It is not part of this library but rather from the NodeJS Stream API.
 // @see: https://nodejs.org/api/stream.html#stream_event_end
 output.on("end", function () {
   console.log("Data has been drained");

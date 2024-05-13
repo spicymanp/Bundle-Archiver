@@ -1,3 +1,5 @@
 # dependencies
 /node_modules
+/sptBundlesTemp
+/user
 modBundlesToSend.zip
