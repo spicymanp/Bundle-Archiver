@@ -1,11 +1,3 @@
-#!/usr/bin/env node
-
-console.log("fuck u");
-process.stdin.resume();
-process.stdin.on("data", function () {
-  process.exit(0);
-});
-
 import fs, { rmSync, rmdirSync } from "fs";
 import path from "path";
 import archiver from "archiver";
@@ -23,7 +15,9 @@ import chalk from "chalk";
 // ---------------------------------------------------------
 
 const sptRoot = "./user/mods";
+//const sptRoot = "H:/EFT-SPT";
 const tempBundlesPath = "./sptBundlesTemp/user/cache";
+//const tempBundlesPath = "H:/sptBundlesTemp/user/cache";
 const tempBundlesRootPath = "./sptBundlesTemp";
 const outputFile = "./modBundlesToSend.zip";
 
