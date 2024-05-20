@@ -1,33 +1,16 @@
-import fs, { rmSync, rmdirSync } from "fs";
-import path from "path";
-import archiver from "archiver";
-import ora from "ora";
-import chalk from "chalk";
-
-// const fs = require("fs");
-// const path = require("path");
-// const archiver = require("archiver");
-// const ora = require("ora");
-// const chalk = require("chalk");
+const fs = require("fs");
+const { rmSync, rmdirSync } = require("fs");
+const path = require("path");
+const archiver = require("archiver");
 
 // ---------------------------------------------------------
 //               DIRECTORY STRUCTURE
 // ---------------------------------------------------------
 
 const sptRoot = "./user/mods";
-//const sptRoot = "H:/EFT-SPT";
 const tempBundlesPath = "./sptBundlesTemp/user/cache";
-//const tempBundlesPath = "H:/sptBundlesTemp/user/cache";
 const tempBundlesRootPath = "./sptBundlesTemp";
 const outputFile = "./modBundlesToSend.zip";
-
-// ---------------------------------------------------------
-//               OTHER CONSTANTS
-// ---------------------------------------------------------
-
-// little cli spinner to show progress
-const spinner = ora();
-// add a splash of colour
 
 // ---------------------------------------------------------
 //               GATHERING THE MODS WITH BUNDLES
@@ -46,12 +29,8 @@ mods.forEach((mod) => {
   }
 });
 console.log(""); //blank line
-console.log(
-  "Total Number of Mods Currently Installed : " + chalk.green(mods.length)
-);
-console.log(
-  "Total Number of Mods with Bundles : " + chalk.green(modsWithBundles.length)
-);
+console.log("Total Number of Mods Currently Installed : " + mods.length);
+console.log("Total Number of Mods with Bundles : " + modsWithBundles.length);
 
 // ---------------------------------------------------------
 //               GET FILESIZE OF A FOLDER
@@ -84,9 +63,9 @@ const getDirSize = (dirPath) => {
 
 //   try {
 //     cleaningServices(pathToDelete);
-//     spinner.succeed(`${path} Has been deleted!`);
+//
 //   } catch (err) {
-//     spinner.fail("Could not delete temp folder...");
+//
 //     console.log(err);
 //   }
 //   if (err) {
@@ -99,18 +78,22 @@ const getDirSize = (dirPath) => {
 //-------------------------------------------------------
 console.log(""); //blank line
 console.log(
-  "Copying the following mod bundles to temp path : " +
-    chalk.green(tempBundlesRootPath)
+  "Copying the following mod bundles to temp path : " + tempBundlesRootPath
 );
+// check if temp folder exists, if not create it
+
+// if (!fs.existsSync(tempBundlesPath)) {
+//   fs.mkdirSync(tempBundlesPath, { recursive: true });
+// }
+
 modsWithBundles.forEach((mod) => {
-  console.log(chalk.yellow(mod));
+  console.log(mod);
   fs.cpSync(mod, tempBundlesPath, { recursive: true });
 });
 // Report the size of the temp bundles folder
 console.log(""); //blank line
-spinner.succeed("Copy complete.");
 const totalDirSize = getDirSize(tempBundlesPath).toExponential(2) / 1000000;
-console.log("Size of bundles : " + chalk.green(totalDirSize + " megabytes"));
+console.log("Size of bundles : " + totalDirSize + " megabytes");
 
 // ---------------------------------------------------------
 //              ZIP TEMP MODS FOLDER
@@ -122,21 +105,19 @@ const archive = archiver("zip", {
 });
 
 console.log(""); //blank line
-spinner.start("Creating archive...");
 // listen for all archive data to be written
 // 'close' event is fired only when a file descriptor is involved
 
 output.on("close", function () {
-  spinner.stop();
-  spinner.succeed("Archiving complete.\n");
   console.log(
-    "Your bundles archive (" +
-      chalk.green(outputFile) +
-      ") is ready to upload and can be found in the your SPT root directory."
+    "Your bundles archive" +
+      outputFile +
+      "is ready to upload and can be found in the your SPT root directory."
   );
   console.log(
     "Size of archive : " +
-      chalk.green(archive.pointer().toExponential(2) / 1000000 + " megabytes")
+      archive.pointer().toExponential(2) / 1000000 +
+      " megabytes"
   );
 
   //              DELETE TEMP FOLDER AFTER ZIPPING
@@ -145,9 +126,7 @@ output.on("close", function () {
 
   try {
     rmSync(tempBundlesRootPath, { recursive: true, force: true });
-    spinner.succeed("Temp folder has been deleted.\n");
   } catch (err) {
-    spinner.fail("Error deleting temp folder...");
     console.log(err);
   }
 });

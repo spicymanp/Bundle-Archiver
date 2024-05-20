@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "fika-bundle-transporter",
   "version": "1.0.0",
   "description": "Find &amp; copy spt-server bundles.",
@@ -7,7 +6,8 @@
   "bin": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "node main.js",
+    "make-exe": "pkg main.js --target node16-win-x64"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,6 @@
   },
   "homepage": "https://github.com/spicymanp/fika-bundle-transporter#readme",
   "dependencies": {
-    "archiver": "^7.0.1",
-    "chalk": "^5.3.0",
-    "ora": "^8.0.1",
-    "source-map-support": "^0.5.21"
+    "archiver": "^7.0.1"
   }
 }

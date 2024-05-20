@@ -17,8 +17,9 @@
 - colour the text that shows number of mods
 - progress bar for archiving creation
 - proper unit coversion
-- eliminate the need to copy bundles to a temp folder
 
 - build p.js into exe
 - expand on this with functiuonality from main.js
 - (understand differences between require and import)
+
+- eliminate need for temp folder, take contents of array and let archiver to its thing on that.
