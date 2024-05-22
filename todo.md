@@ -4,13 +4,16 @@
 ✔ get total size of mods with bundles
 ✔ how to zip up a whole folder
 ✔ add little loading dots
+✔ message about not having mods with bundles
+✔ eliminate need for temp folder, take contents of array and let archiver to its thing on that
+✔ generate an exe of the project
+✔ delete/empty temp folder after copy and zip is complete (depricated)
+✔ don't create a zip file if there are no bundles
 
-- generate an exe of the project
 - compare size of mods with bundles with copy of mods with bundles
 - ask to input spt root folder path
 - detect if current folder is SPT root folder
 - find the spt root folder
-- delete/empty temp folder after copy and zip is complete
 - allow for the choice of which mods to then copy and zip
 - log when the last copy was run
 - option to only copy files newer than the last copy
@@ -18,8 +21,6 @@
 - progress bar for archiving creation
 - proper unit coversion
 
-- build p.js into exe
-- expand on this with functiuonality from main.js
-- (understand differences between require and import)
-
-- eliminate need for temp folder, take contents of array and let archiver to its thing on that.
+- show file sizes maybe
+- clean up code
+- do tests

@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/spicymanp/fika-bundle-transporter#readme",
   "dependencies": {
-    "archiver": "^7.0.1"
+    "archiver": "^7.0.1",
+    "fs-extra": "^11.2.0",
+    "jszip": "^3.10.1"
   }
 }
