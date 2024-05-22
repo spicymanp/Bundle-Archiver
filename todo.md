@@ -21,6 +21,7 @@
 - progress bar for archiving creation
 - proper unit coversion
 
+- check if zip file exists before writing to it
 - show file sizes maybe
 - clean up code
 - do tests

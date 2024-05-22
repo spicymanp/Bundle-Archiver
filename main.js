@@ -68,7 +68,7 @@ console.log("Total Number of Mods with Bundles : " + modsWithBundles.length);
 
 const output = fs.createWriteStream(outputFile);
 const archive = archiver("zip", {
-  zlib: { level: 9 }, // Sets the compression level. 1 quickest/largest - 9 slowest/smallest
+  zlib: { level: 9 },
 });
 output.on("close", function () {
   console.log(
@@ -81,17 +81,8 @@ output.on("close", function () {
       archive.pointer().toExponential(2) / 1000000 +
       " megabytes"
   );
-
-  //              DELETE TEMP FOLDER AFTER ZIPPING
-
-  console.log(""); //blank line
-
-  try {
-    rmSync(tempBundlesRootPath, { recursive: true, force: true });
-  } catch (err) {
-    console.log(err);
-  }
 });
+
 output.on("end", function () {
   console.log("Data has been drained");
 });
@@ -104,18 +95,20 @@ archive.on("warning", (err) => {
     throw err;
   }
 });
+
 archive.on("error", function (err) {
   throw err;
 });
+
 archive.pipe(output);
 
+//Create the zip
 modsWithBundles.forEach((mod) => {
   console.log(mod);
   archive.directory(mod, "user/cache/bundles");
 });
-
 archive.finalize();
-
+console.log("Job done, press any key to continue.");
 process.stdin.resume();
 process.stdin.on("data", function () {
   process.exit(0);
