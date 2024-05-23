@@ -1,11 +1,12 @@
 High Priority - prior to release
 
-- check if zip file exists before writing to it
-- clean up code
+- Ensure print messages are clear, concise and accurate.
 - do tests
+- clean up code
 
 Low Priority - post release
 
+- if zip file exists, give option to delete or overwrite it
 - show file sizes maybe
 - proper unit conversion
 - progress bar for archiving process
@@ -16,6 +17,7 @@ Low Priority - post release
 - ask to input spt root folder path (as an option to not run from spt root)
 - expand on user/mods directory check to check for spt root (currently assuming in root)
 - look into how to integrate 'prompts' npmjs.com/package/prompts
+- include a readme in the zipped archive with instructions for where to extract the bundles zip to.
 
 Complete :
 
@@ -32,3 +34,4 @@ Complete :
 ✔ don't create a zip file if there are no bundles
 ✔ detect if current folder is SPT root folder (and/or? if there are any mods)
 ✔ show some indication that zipping is taking place
+✔ check if zip file exists before writing to it
