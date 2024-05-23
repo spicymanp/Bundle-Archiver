@@ -13,6 +13,10 @@ const tempBundlesRootPath = "./sptBundlesTemp";
 const outputFile = "./modBundlesToSend.zip";
 
 // ---------------------------------------------------------
+//               FUNCTION TO KEEP TERMINAL WINDOW OPEN
+// ---------------------------------------------------------
+
+// ---------------------------------------------------------
 //               CHECK IF IN SPT ROOT OR IF MODS EXIST
 // ---------------------------------------------------------
 
@@ -24,7 +28,7 @@ if (inRoot) {
   console.log(
     "\nYour 'mods' folder was not found. \nPlease ensure Bundle Archiver is in the SPT root directory or check that you have mods installed.\n"
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 // ---------------------------------------------------------
@@ -36,7 +40,7 @@ if (zipExists) {
   console.log(
     "\nThe file 'modBundlesToSend.zip' already exists, please delete it and try again.\n"
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 // ---------------------------------------------------------
@@ -58,10 +62,11 @@ mods.forEach((mod) => {
 console.log("\nNumber of Mods Currently Installed : " + mods.length);
 if (modsWithBundles.length === 0) {
   console.log("None of your mods have bundles, happy gaming!\n");
-  process.exit(1);
+  process.exit(0);
 }
 console.log("Number of mods with bundles : " + modsWithBundles.length + "\n");
 console.log("Listing mods with bundles :");
+
 // ---------------------------------------------------------
 //              ZIP BUNDLES
 // ---------------------------------------------------------
@@ -106,14 +111,14 @@ archive.on("error", function (err) {
 
 archive.pipe(output);
 
-//Create the zip
-let i = 0; //for the spinner
-process.stdout.write("\x1B[?25l"); //Hide the cursor
 //Show some work is being done
+let i = 0;
+process.stdout.write("\x1B[?25l"); //Hide the cursor
 const spinner = setInterval(() => {
   process.stdout.write(`\r${".".repeat(i++ % 4)}   `);
 }, 300);
 
+//Create the zip file
 modsWithBundles.forEach((mod) => {
   console.log("- " + mod);
   archive.directory(mod, "user/cache/bundles");

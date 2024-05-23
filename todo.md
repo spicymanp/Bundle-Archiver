@@ -18,6 +18,7 @@ Low Priority - post release
 - expand on user/mods directory check to check for spt root (currently assuming in root)
 - look into how to integrate 'prompts' npmjs.com/package/prompts
 - include a readme in the zipped archive with instructions for where to extract the bundles zip to.
+- if the process completed in less than a second, print a message highlighting how quick that was!
 
 Complete :
 
@@ -35,3 +36,4 @@ Complete :
 ✔ detect if current folder is SPT root folder (and/or? if there are any mods)
 ✔ show some indication that zipping is taking place
 ✔ check if zip file exists before writing to it
+✔ add a function to keep terminal window open after an error

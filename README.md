@@ -1,6 +1,6 @@
 # Bundle Archiver
 
-a utilitarian Project Fika for SPT script.
+a utilitarian script Project Fika.
 
 An easy way to for the server host to find currently installed mod bundles and create a compressed copy to send to friends, subverting the need to wait for the host-server to send clients these bundles, hopefully saving everyone time and frustration.
 
