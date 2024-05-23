@@ -1,20 +1,21 @@
 High Priority - prior to release
 
-- detect if current folder is SPT root folder (and/or? if there are any mods)
 - check if zip file exists before writing to it
-- show file sizes maybe
-- proper unit conversion
 - clean up code
 - do tests
 
 Low Priority - post release
 
+- show file sizes maybe
+- proper unit conversion
 - progress bar for archiving process
 - add some colour to the various text
 - allow for the choice of which mods to then copy and zip
 - log when the last copy was run
 - option to only copy files newer than the last copy
 - ask to input spt root folder path (as an option to not run from spt root)
+- expand on user/mods directory check to check for spt root (currently assuming in root)
+- look into how to integrate 'prompts' npmjs.com/package/prompts
 
 Complete :
 
@@ -29,3 +30,5 @@ Complete :
 ✔ generate an exe of the project
 ✔ delete/empty temp folder after copy and zip is complete (deprecated)
 ✔ don't create a zip file if there are no bundles
+✔ detect if current folder is SPT root folder (and/or? if there are any mods)
+✔ show some indication that zipping is taking place

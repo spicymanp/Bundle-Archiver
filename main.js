@@ -2,7 +2,6 @@ const fs = require("fs");
 const { rmSync, rmdirSync } = require("fs");
 const path = require("path");
 const archiver = require("archiver");
-const prompts = require("prompts");
 
 // ---------------------------------------------------------
 //               DIRECTORY STRUCTURE
@@ -54,33 +53,6 @@ console.log(
 );
 
 // ---------------------------------------------------------
-//               GET FILESIZE OF A FOLDER
-// ---------------------------------------------------------
-
-// const getDirSize = (dirPath) => {
-//   let size = 0;
-//   const files = fs.readdirSync(dirPath);
-
-//   for (let i = 0; i < files.length; i++) {
-//     const filePath = path.join(dirPath, files[i]);
-//     const stats = fs.statSync(filePath);
-
-//     if (stats.isFile()) {
-//       size += stats.size;
-//     } else if (stats.isDirectory()) {
-//       size += getDirSize(filePath);
-//     }
-//   }
-
-//   return size;
-// };
-
-// Report the size of the temp bundles folder
-// console.log(""); //blank line
-// const totalDirSize = getDirSize(tempBundlesPath).toExponential(2) / 1000000;
-// console.log("Size of bundles : " + totalDirSize + " megabytes");
-
-// ---------------------------------------------------------
 //              ZIP BUNDLES
 // ---------------------------------------------------------
 
@@ -89,13 +61,15 @@ const archive = archiver("zip", {
   zlib: { level: 9 },
 });
 output.on("close", function () {
-  console.log(
-    "\nZip file 'modBundlesToSend.zip' created. Size of archive : " +
+  clearInterval(spinner);
+  process.stdout.write(
+    "\rZip file 'modBundlesToSend.zip' created. Size of archive : " +
       archive.pointer().toExponential(2) / 1000000 +
       " megabytes"
   );
+  process.stdout.write("\x1B[?25h"); //Show the cursror
   console.log(
-    "\nJob done! You can find your file in the SPT root directory. Press any key to exit."
+    "\nJob done! You can find your file in the SPT root directory. Hit return to exit."
   );
 });
 
@@ -119,6 +93,13 @@ archive.on("error", function (err) {
 archive.pipe(output);
 
 //Create the zip
+let i = 0; //for the spinner
+process.stdout.write("\x1B[?25l"); //Hide the cursor
+//Show some work is being done
+const spinner = setInterval(() => {
+  process.stdout.write(`\rWorking${".".repeat(i++ % 4)}   `);
+}, 500);
+
 modsWithBundles.forEach((mod) => {
   console.log(mod);
   archive.directory(mod, "user/cache/bundles");
