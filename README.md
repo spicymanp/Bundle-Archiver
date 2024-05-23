@@ -1,5 +1,7 @@
-# fika-bundle-transporter aka SPT Bundle-Bundler
+# Bundle Archiver
 
-An easy way to for the server host to find mod bundles (of installed mods) and create a compressed copy to send to friends who you intend on playing coop with.
+a utilitarian Project Fika for SPT script.
 
-This method is far more efficient in my opinion than relying on fika to respond to client requests for mod bundles especially when dealing with large mods.
+An easy way to for the server host to find currently installed mod bundles and create a compressed copy to send to friends, subverting the need to wait for the host-server to send clients these bundles, hopefully saving everyone time and frustration.
+
+This is just an option other than having to rely on fika to respond to client requests for mod bundles and can be much quicker especially when dealing many mods or large ones.
