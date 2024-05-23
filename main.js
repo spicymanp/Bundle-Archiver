@@ -2,7 +2,7 @@ const fs = require("fs");
 const { rmSync, rmdirSync } = require("fs");
 const path = require("path");
 const archiver = require("archiver");
-const prompts = require("propts");
+const prompts = require("prompts");
 
 // ---------------------------------------------------------
 //               DIRECTORY STRUCTURE
@@ -12,6 +12,21 @@ const sptRoot = "./user/mods";
 const tempBundlesPath = "./sptBundlesTemp/user/cache";
 const tempBundlesRootPath = "./sptBundlesTemp";
 const outputFile = "./modBundlesToSend.zip";
+
+// ---------------------------------------------------------
+//               CHECK IF IN SPT ROOT OR IF MODS EXIST
+// ---------------------------------------------------------
+
+const inRoot = fs.existsSync(sptRoot);
+
+if (inRoot) {
+  console.log("\nSPT mods founds, SPT root directory confirmed.");
+} else {
+  console.log(
+    "\nPlease place bundler in the SPT root directory or check that you have mods installed.\n"
+  );
+  process.exit(1);
+}
 
 // ---------------------------------------------------------
 //               GATHERING THE MODS WITH BUNDLES
@@ -34,7 +49,9 @@ if (modsWithBundles.length === 0) {
   console.log("None of your mods have bundles, happy gaming!\n");
   process.exit(1);
 }
-console.log("Total Number of Mods with Bundles : " + modsWithBundles.length);
+console.log(
+  "Total Number of Mods with Bundles : " + modsWithBundles.length + "\n"
+);
 
 // ---------------------------------------------------------
 //               GET FILESIZE OF A FOLDER
@@ -73,14 +90,12 @@ const archive = archiver("zip", {
 });
 output.on("close", function () {
   console.log(
-    "Your bundles archive" +
-      outputFile +
-      "is ready to upload and can be found in the your SPT root directory."
-  );
-  console.log(
-    "Size of archive : " +
+    "\nZip file 'modBundlesToSend.zip' created. Size of archive : " +
       archive.pointer().toExponential(2) / 1000000 +
       " megabytes"
+  );
+  console.log(
+    "\nJob done! You can find your file in the SPT root directory. Press any key to exit."
   );
 });
 
@@ -109,7 +124,7 @@ modsWithBundles.forEach((mod) => {
   archive.directory(mod, "user/cache/bundles");
 });
 archive.finalize();
-console.log("Job done, press any key to continue.");
+
 process.stdin.resume();
 process.stdin.on("data", function () {
   process.exit(0);
