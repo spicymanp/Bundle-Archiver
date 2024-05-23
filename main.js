@@ -2,6 +2,7 @@ const fs = require("fs");
 const { rmSync, rmdirSync } = require("fs");
 const path = require("path");
 const archiver = require("archiver");
+const prompts = require("propts");
 
 // ---------------------------------------------------------
 //               DIRECTORY STRUCTURE
