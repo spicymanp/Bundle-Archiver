@@ -27,18 +27,6 @@ if (fs.existsSync(sptRoot)) {
 }
 
 // ---------------------------------------------------------
-//               CHECK IF 'modBundlesToSend.zip' EXISTS
-// ---------------------------------------------------------
-
-// const zipExists = fs.existsSync(outputFile);
-// if (zipExists) {
-//   console.log(
-//     "\nThe file 'modBundlesToSend.zip' already exists, please delete it and try again.\n"
-//   );
-//   process.exit(0);
-// }
-
-// ---------------------------------------------------------
 //               GATHERING THE MODS WITH BUNDLES
 // ---------------------------------------------------------
 
@@ -83,8 +71,6 @@ output.on("close", function () {
   process.stdout.write("\x1B[?25h"); //Show the cursror
 
   console.log("\nYou can find the zip file your SPT root directory.");
-
-  
 });
 
 output.on("end", function () {
