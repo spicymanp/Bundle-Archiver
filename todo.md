@@ -1,16 +1,12 @@
 High Priority - prior to release
 
-- Ensure terminal remains open and waits for user input before exiting, regardless of reason.
-- Ensure print messages are clear, concise and accurate.
-- do tests
 - clean up code
-- sync host settings & mods (another mod)
 
 Low Priority - post release
 
+- sync host settings & mods (another mod)
 - if zip file exists, give option to delete or overwrite it
-- show file sizes maybe
-- proper unit conversion
+- show size of bundles (before compression)
 - progress bar for archiving process
 - add some colour to the various text
 - allow for the choice of which mods to then copy and zip
@@ -21,6 +17,8 @@ Low Priority - post release
 - look into how to integrate 'prompts' npmjs.com/package/prompts
 - include a readme in the zipped archive with instructions for where to extract the bundles zip to.
 - if the process completed in less than a second, print a message highlighting how quick that was!
+- rafactor code into functions that make it more elegant
+- refactor to make use of async/await
 
 Complete :
 
@@ -39,3 +37,8 @@ Complete :
 ✔ show some indication that zipping is taking place
 ✔ check if zip file exists before writing to it
 ✔ add a function to keep terminal window open after an error
+✔ Ensure terminal remains open and waits for user input before exiting, regardless of reason.
+✔ show file sizes
+✔ proper unit conversion
+✔ Ensure print messages are clear, concise and accurate.
+✔ do tests
