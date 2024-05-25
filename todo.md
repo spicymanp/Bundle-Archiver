@@ -1,8 +1,10 @@
 High Priority - prior to release
 
+- Ensure terminal remains open and waits for user input before exiting, regardless of reason.
 - Ensure print messages are clear, concise and accurate.
 - do tests
 - clean up code
+- sync host settings & mods (another mod)
 
 Low Priority - post release
 

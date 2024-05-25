@@ -8,8 +8,6 @@ const archiver = require("archiver");
 // ---------------------------------------------------------
 
 const sptRoot = "./user/mods";
-const tempBundlesPath = "./sptBundlesTemp/user/cache";
-const tempBundlesRootPath = "./sptBundlesTemp";
 const outputFile = "./modBundlesToSend.zip";
 
 // ---------------------------------------------------------
@@ -20,28 +18,25 @@ const outputFile = "./modBundlesToSend.zip";
 //               CHECK IF IN SPT ROOT OR IF MODS EXIST
 // ---------------------------------------------------------
 
-const inRoot = fs.existsSync(sptRoot);
-
-if (inRoot) {
+if (fs.existsSync(sptRoot)) {
   console.log("\nMods folder found, SPT root directory confirmed.");
 } else {
   console.log(
     "\nYour 'mods' folder was not found. \nPlease ensure Bundle Archiver is in the SPT root directory or check that you have mods installed.\n"
   );
-  process.exit(0);
 }
 
 // ---------------------------------------------------------
 //               CHECK IF 'modBundlesToSend.zip' EXISTS
 // ---------------------------------------------------------
 
-const zipExists = fs.existsSync(outputFile);
-if (zipExists) {
-  console.log(
-    "\nThe file 'modBundlesToSend.zip' already exists, please delete it and try again.\n"
-  );
-  process.exit(0);
-}
+// const zipExists = fs.existsSync(outputFile);
+// if (zipExists) {
+//   console.log(
+//     "\nThe file 'modBundlesToSend.zip' already exists, please delete it and try again.\n"
+//   );
+//   process.exit(0);
+// }
 
 // ---------------------------------------------------------
 //               GATHERING THE MODS WITH BUNDLES
@@ -87,9 +82,9 @@ output.on("close", function () {
 
   process.stdout.write("\x1B[?25h"); //Show the cursror
 
-  console.log(
-    "\nJob done! You can find your file in the SPT root directory. \nHit return to exit."
-  );
+  console.log("\nYou can find the zip file your SPT root directory.");
+
+  
 });
 
 output.on("end", function () {
@@ -123,9 +118,5 @@ modsWithBundles.forEach((mod) => {
   console.log("- " + mod);
   archive.directory(mod, "user/cache/bundles");
 });
-archive.finalize();
 
-process.stdin.resume();
-process.stdin.on("data", function () {
-  process.exit(0);
-});
+archive.finalize();
