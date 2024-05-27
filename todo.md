@@ -4,6 +4,7 @@ High Priority - prior to release
 
 Low Priority - post release
 
+- add a small delay between listing each mod, for effect. (do this asyncronously)
 - show size of bundles (before compression)
 - progress bar for archiving process
 - add some colour to the various text

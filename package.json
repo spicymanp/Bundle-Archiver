@@ -1,5 +1,5 @@
 {
-  "name": "Bundle-Archiver",
+  "name": "bundle-archiver",
   "version": "1.0.0",
   "description": "Find &amp; copy spt-server bundles.",
   "main": "main.js",
