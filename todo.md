@@ -1,7 +1,6 @@
 High Priority - prior to release
 
-- include instructions in the zipped archive with instructions for where to extract the bundles zip to
-- clean up code
+- so much completeness...
 
 Low Priority - post release
 
@@ -15,6 +14,7 @@ Low Priority - post release
 - expand on user/mods directory check to check for spt root (currently assuming in root)
 - option to only copy files newer than the last copy
 - look into how to integrate 'prompts' npmjs.com/package/prompts
+- measure time taken to complete the task
 - if the process completed in less than a second, print a message highlighting how quick that was
 - rafactor code into functions that make it more elegant, make use of async/await
 - sync host settings & mods (possibly better as a seperate utility)
@@ -40,4 +40,6 @@ Complete :
 ✔ show file sizes
 ✔ proper unit conversion
 ✔ Ensure print messages are clear, concise and accurate.
+✔ include instructions in the zipped archive with instructions for where to extract the bundles zip to
+✔ clean up code
 ✔ do tests

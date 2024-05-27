@@ -54,7 +54,7 @@ if (sptFolderExists) {
 
     const output = fs.createWriteStream(outputFile);
     const archive = archiver("zip", {
-      zlib: { level: 3 },
+      zlib: { level: 1 },
     });
 
     output.on("close", function () {
@@ -113,7 +113,7 @@ if (sptFolderExists) {
       archive.directory(mod, "user/cache/bundles");
     });
     console.log("\nCreating Archive (this may take some time).");
-    archive.append("Extract zip contents into SPT root directory.txt", {
+    archive.append("Extract zip contents into SPT root directory.", {
       name: "Instructions.txt",
     });
     archive.finalize();
