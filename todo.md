@@ -1,24 +1,23 @@
 High Priority - prior to release
 
+- include instructions in the zipped archive with instructions for where to extract the bundles zip to
 - clean up code
 
 Low Priority - post release
 
-- sync host settings & mods (another mod)
-- if zip file exists, give option to delete or overwrite it
 - show size of bundles (before compression)
 - progress bar for archiving process
 - add some colour to the various text
-- allow for the choice of which mods to then copy and zip
 - log when the last copy was run
-- option to only copy files newer than the last copy
+- check if zip file exists, offer option to delete or overwrite or exit
 - ask to input spt root folder path (as an option to not run from spt root)
+- allow for the choice of which mods to then copy and zip
 - expand on user/mods directory check to check for spt root (currently assuming in root)
+- option to only copy files newer than the last copy
 - look into how to integrate 'prompts' npmjs.com/package/prompts
-- include a readme in the zipped archive with instructions for where to extract the bundles zip to.
-- if the process completed in less than a second, print a message highlighting how quick that was!
-- rafactor code into functions that make it more elegant
-- refactor to make use of async/await
+- if the process completed in less than a second, print a message highlighting how quick that was
+- rafactor code into functions that make it more elegant, make use of async/await
+- sync host settings & mods (possibly better as a seperate utility)
 
 Complete :
 

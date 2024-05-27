@@ -113,6 +113,9 @@ if (sptFolderExists) {
       archive.directory(mod, "user/cache/bundles");
     });
     console.log("\nCreating Archive (this may take some time).");
+    archive.append("Extract zip contents into SPT root directory.txt", {
+      name: "Instructions.txt",
+    });
     archive.finalize();
   } else {
     console.log(
