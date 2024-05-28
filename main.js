@@ -83,7 +83,7 @@ if (sptFolderExists) {
           process.stdout.write("\x1B[?25h");
 
           console.log("\nYou can find the zip file in the SPT root directory.");
-          console.log("\nPress Enter to exit...");
+          console.log("\nPress any key to exit...");
         }
       });
     });
@@ -129,15 +129,15 @@ if (sptFolderExists) {
     console.log(
       "None of your mods have bundles, you don't need this script!\n"
     );
-    console.log("\nPress Enter to exit...");
+    console.log("\nPress any key to exit...");
   }
 } else {
   console.log(
     "\nYour 'mods' folder was not found. \nPlease ensure Bundle Archiver is in the SPT root directory or check that you have mods installed.\n"
   );
-  console.log("\nPress Enter to exit...");
+  console.log("\nPress any key to exit...");
 }
-
+process.stdin.setRawMode(true);
 process.stdin.resume();
 process.stdin.on("data", function () {
   process.exit(0);
