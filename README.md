@@ -1,7 +1,17 @@
 # Bundle Archiver
 
-a utilitarian script for Project Fika users.
+|WHAT IS THIS|
 
-An easy way to for the server host to find currently installed mod bundles and create a compressed copy to send to friends, subverting the need to wait for the host-server to send clients these bundles, hopefully saving everyone time and frustration.
+A simple script that finds all mod bundles and conveniently zips them up to easily share with friends, mitigating the need for the slow server-client bundles process.
 
-This is just an option other than having to rely on fika to respond to client requests for mod bundles and can be much quicker especially when dealing many mods or large ones.
+|INSTRUCTIONS - SERVER/HOST|
+
+- Place the Bundle-Archiver.exe into your SPT root directory.
+- Once the script has completed, find the zipped archive 'modBundles.zip' in your SPT root.
+- Share this file with any friends who need it.
+
+|INSTRUCTIONS - CLIENT|
+
+- Once your friends have the zipped archive they need to extract the contents into the root of their SPT directory.
+
+- Enjoy your co-op SPT experience.
