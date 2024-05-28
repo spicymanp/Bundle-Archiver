@@ -19,6 +19,14 @@ function formatBytes(a, b = 2) {
   }`;
 }
 
+//-------------SIMPLIFY MOD LIST OUTPUT STRING-------------
+
+function removeText(textToRemove) {
+  let newText = textToRemove.replace("user\\mods\\", "");
+  let finalText = newText.replace("\\bundles", "");
+  return finalText;
+}
+
 //-------------CHECK IF IN SPT ROOT OR IF MODS EXIST-------------
 
 const sptFolderExists = fs.existsSync(sptRoot);
@@ -40,7 +48,7 @@ if (sptFolderExists) {
       modsWithBundles.push(fullPathWithBundles);
     }
   });
-  console.log("\nNumber of Mods Currently Installed : " + mods.length);
+  console.log("\nNumber of mods currently installed : " + mods.length);
 
   const bundlesExist = modsWithBundles.length > 0;
 
@@ -74,8 +82,8 @@ if (sptFolderExists) {
           // SHOW THE CURSOR
           process.stdout.write("\x1B[?25h");
 
-          console.log("\nYou can find the zip file the SPT root directory.");
-          console.log("\nPress any key to exit...");
+          console.log("\nYou can find the zip file in the SPT root directory.");
+          console.log("\nPress Enter to exit...");
         }
       });
     });
@@ -109,7 +117,7 @@ if (sptFolderExists) {
 
     // CREATE THE ZIP FILE
     modsWithBundles.forEach((mod) => {
-      console.log("- " + mod);
+      console.log("- " + removeText(mod));
       archive.directory(mod, "user/cache/bundles");
     });
     console.log("\nCreating Archive (this may take some time).");
@@ -121,13 +129,13 @@ if (sptFolderExists) {
     console.log(
       "None of your mods have bundles, you don't need this script!\n"
     );
-    console.log("\nPress any key to exit...");
+    console.log("\nPress Enter to exit...");
   }
 } else {
   console.log(
     "\nYour 'mods' folder was not found. \nPlease ensure Bundle Archiver is in the SPT root directory or check that you have mods installed.\n"
   );
-  console.log("\nPress any key to exit...");
+  console.log("\nPress Enter to exit...");
 }
 
 process.stdin.resume();
