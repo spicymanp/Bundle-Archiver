@@ -120,6 +120,7 @@ if (sptFolderExists) {
       console.log("- " + removeText(mod));
       archive.directory(mod, "user/cache/bundles");
     });
+
     console.log("\nCreating Archive (this may take some time).");
     archive.append("Extract zip contents into SPT root directory.", {
       name: "Instructions.txt",
@@ -137,6 +138,7 @@ if (sptFolderExists) {
   );
   console.log("\nPress any key to exit...");
 }
+
 process.stdin.setRawMode(true);
 process.stdin.resume();
 process.stdin.on("data", function () {

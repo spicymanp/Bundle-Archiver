@@ -4,6 +4,7 @@ High Priority - prior to release
 
 Low Priority - post release
 
+- rafactor code into functions that make it more elegant, make use of async/await
 - add a small delay between listing each mod, for effect. (do this asyncronously)
 - show size of bundles (before compression)
 - progress bar for archiving process
@@ -17,7 +18,6 @@ Low Priority - post release
 - look into how to integrate 'prompts' npmjs.com/package/prompts
 - measure time taken to complete the task
 - if the process completed in less than a second, print a message highlighting how quick that was
-- rafactor code into functions that make it more elegant, make use of async/await
 - sync host settings & mods (possibly better as a seperate utility)
 
 Complete :
