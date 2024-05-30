@@ -1,25 +1,25 @@
 {
-  "name": "bundle-archiver",
-  "version": "1.0.0",
-  "description": "Find &amp; copy spt-server bundles.",
-  "main": "main.js",
-  "bin": "main.js",
-  "scripts": {
-    "start": "node main.js",
-    "make-exe": "pkg main.js --target node16-win-x64"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spicymanp/Bundle-Archiver.git"
-  },
-  "author": "dogs",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/spicymanp/Bundle-Archiver/issues"
-  },
-  "homepage": "https://github.com/spicymanp/Bundle-Archiver#readme",
-  "dependencies": {
-    "archiver": "^7.0.1",
-    "fs-extra": "^11.2.0"
-  }
+    "name": "bundle-archiver",
+    "version": "1.0.0",
+    "description": "Find &amp; copy spt-server bundles.",
+    "main": "main.js",
+    "bin": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "make-exe": "pkg main.js --target node16-win-x64 -o ./dist/Bundle.Archiver.v1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/spicymanp/Bundle-Archiver.git"
+    },
+    "author": "dogs",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/spicymanp/Bundle-Archiver/issues"
+    },
+    "homepage": "https://github.com/spicymanp/Bundle-Archiver#readme",
+    "dependencies": {
+        "archiver": "^7.0.1",
+        "fs-extra": "^11.2.0"
+    }
 }
