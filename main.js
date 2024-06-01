@@ -61,7 +61,6 @@ if (sptFolderExists) {
         });
 
         output.on("close", function () {
-            clearInterval(spinner);
             console.log(" ");
 
             // GET THE FILESIZE OF THE ARCHIVE
@@ -98,12 +97,13 @@ if (sptFolderExists) {
         archive.pipe(output);
 
         // SHOW SOME WORK IS BEING DONE
-        let i = 0;
-        process.stdout.write("\x1B[?25l"); // HIDE CURSOR
-        const spinner = setInterval(() => {
-            process.stdout.write(`\r${".".repeat(i++ % 10)}         `);
-        }, 300);
-
+        archive.on("progress", (progress) => {
+            process.stdout.write("\x1B[?25l"); // HIDE CURSOR
+            const percentage = (progress.entries.processed / progress.entries.total) * 100;
+            process.stdout.clearLine(0);
+            process.stdout.cursorTo(0);
+            process.stdout.write(percentage.toFixed(2) + "%");
+        });
         // CREATE THE ZIP FILE
         modsWithBundles.forEach((mod) => {
             console.log("- " + removeText(mod));

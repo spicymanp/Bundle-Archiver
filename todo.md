@@ -1,24 +1,25 @@
 High Priority - prior to release
 
-- so much completeness...
+-   so much completeness...
 
 Low Priority - post release
 
-- rafactor code into functions that make it more elegant, make use of async/await
-- add a small delay between listing each mod, for effect. (do this asyncronously)
-- show size of bundles (before compression)
-- progress bar for archiving process
-- add some colour to the various text
-- log when the last copy was run
-- check if zip file exists, offer option to delete or overwrite or exit
-- ask to input spt root folder path (as an option to not run from spt root)
-- allow for the choice of which mods to then copy and zip
-- expand on user/mods directory check to check for spt root (currently assuming in root)
-- option to only copy files newer than the last copy
-- look into how to integrate 'prompts' npmjs.com/package/prompts
-- measure time taken to complete the task
-- if the process completed in less than a second, print a message highlighting how quick that was
-- sync host settings & mods (possibly better as a seperate utility)
+-   rafactor code into functions that make it more elegant, make use of async/await
+-   add a small delay between listing each mod, for effect. (do this asyncronously)
+-   show size of bundles (before compression)
+-   progress bar for archiving process
+-   add some colour to the various text
+-   log when the last copy was run
+-   check if zip file exists, offer option to delete or overwrite or exit
+-   ask to input spt root folder path (as an option to not run from spt root)
+-   allow for the choice of which mods to then copy and zip
+-   expand on user/mods directory check to check for spt root (currently assuming in root)
+-   option to only copy files newer than the last copy
+-   look into how to integrate 'prompts' npmjs.com/package/prompts
+-   measure time taken to complete the task
+-   if the process completed in less than a second, print a message highlighting how quick that was
+-   list each mod as it is being added to the archive then add a tick mark to indicate that the mod has been added to the archive
+-   sync host settings & mods (possibly better as a seperate utility)
 
 Complete :
 
