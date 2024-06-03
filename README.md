@@ -10,6 +10,10 @@
 -   This helps solve this problem in a few simple steps by automating the finding of mod bundles and conveniently zipping them up to easily share with friends.
 -   This mitigates the need for the often time-consuming server-client bundle process.
 
+## Where can I get this? 
+
+-   [Here](https://github.com/spicymanp/Bundle-Archiver/releases/download/v1.0.0/Bundle.Archiver.v1.0.0.exe)
+
 ## Instructions - Server/Host (Person who has all the mod bundles)
 
 -   Extract the Bundle-Arhiver.zip into your SPT root directory (where the aki.launcher.exe is).
