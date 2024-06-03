@@ -1,9 +1,11 @@
 High Priority - prior to release
 
--   so much completeness...
+-   write a short intro with link to code on github (do in asci ala the scene or something equally cool and decorative (reference SPT ))
 
 Low Priority - post release
 
+-   fix percentage done fuckery.
+-   check why overwriting files on extract
 -   rafactor code into functions that make it more elegant, make use of async/await
 -   add a small delay between listing each mod, for effect. (do this asyncronously)
 -   show size of bundles (before compression)

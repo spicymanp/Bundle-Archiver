@@ -2,6 +2,7 @@ const fs = require("fs");
 const { rmSync, rmdirSync } = require("fs");
 const path = require("path");
 const archiver = require("archiver");
+const cliProgress = require("cli-progress");
 
 //-------------DIRECTORY STRUCTURE-------------
 
@@ -17,7 +18,7 @@ function formatBytes(a, b = 2) {
     return `${parseFloat((a / Math.pow(1024, d)).toFixed(c))} ${["Bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"][d]}`;
 }
 
-//-------------SIMPLIFY MOD LIST OUTPUT STRING-------------
+//-------------SIMPLIFY MOD LIST OUTPUT STRING
 
 function removeText(textToRemove) {
     let newText = textToRemove.replace("user\\mods\\", "");
@@ -25,17 +26,34 @@ function removeText(textToRemove) {
     return finalText;
 }
 
-//-------------CHECK IF IN SPT ROOT OR IF MODS EXIST-------------
+//-------------GET TOTAL NUMBER OF FILES IN MODS WITH BUNDLES
+
+function getAllFilesInSubdirectories(dir, files = []) {
+    const fileList = fs.readdirSync(dir);
+
+    for (const file of fileList) {
+        const name = `${dir}/${file}`;
+        if (fs.statSync(name).isDirectory()) {
+            getAllFilesInSubdirectories(name, files);
+        } else {
+            files.push(name);
+        }
+    }
+    return files;
+}
+
+//-------------CHECK IF IN SPT ROOT OR IF THERE ARE ANY MODS INSTALLED
 
 const sptFolderExists = fs.existsSync(sptRoot);
 
 if (sptFolderExists) {
     console.log("\nSPT root directory confirmed & mods folder found.");
 
-    //-------------GATHERING THE MODS WITH BUNDLES-------------
+    //-------------LOOK FOR MODS WITH BUNDLES
 
     const mods = fs.readdirSync(sptRoot);
     const modsWithBundles = [];
+    let totalNumberofFiles = 25; // DOING THIS TO ENSURE PROGRESS BAR DOESN'T SIT ON 100% FOR TOO LONG (WHILE I FIGURE OUT THE CALCULATION ISSUES)
 
     mods.forEach((mod) => {
         const fullPath = path.join(sptRoot, mod);
@@ -44,16 +62,22 @@ if (sptFolderExists) {
 
         if (modHasBundles) {
             modsWithBundles.push(fullPathWithBundles);
+
+            let fileCount = getAllFilesInSubdirectories(fullPathWithBundles);
+            totalNumberofFiles += fileCount.length;
         }
     });
     console.log("\nNumber of mods currently installed : " + mods.length);
-    const bundlesExist = modsWithBundles.length > 0;
 
+    //-------------IF THERE ARE MODS WITH BUNDLES
+
+    const bundlesExist = modsWithBundles.length > 0;
     if (bundlesExist) {
         console.log("Number of mods with bundles : " + modsWithBundles.length + "\n");
-        console.log("Listing mods with bundles :");
 
-        //-------------ZIP BUNDLES-------------
+        console.log("Listing mods with bundles:");
+
+        //-------------ZIP BUNDLES
 
         const output = fs.createWriteStream(outputFile);
         const archive = archiver("zip", {
@@ -63,7 +87,8 @@ if (sptFolderExists) {
         output.on("close", function () {
             console.log(" ");
 
-            // GET THE FILESIZE OF THE ARCHIVE
+            //-------------GET THE FILESIZE OF THE ARCHIVE
+
             fs.stat(outputFile, (err, stats) => {
                 if (err) {
                     console.log(`File doesn't exist.`);
@@ -77,9 +102,40 @@ if (sptFolderExists) {
             });
         });
 
+        //-------------SHOW SOME WORK IS BEING DONE
+
+        const progressBar = new cliProgress.SingleBar({
+            format: "{bar}| {percentage}%",
+            barCompleteChar: "\u2588",
+            barIncompleteChar: "\u2591",
+            hideCursor: true,
+        });
+
+        archive.on("progress", (progress) => {
+            const percentage = (progress.entries.processed / totalNumberofFiles) * 100;
+            // process.stdout.write("\x1B[?25l"); // HIDE CURSOR
+            process.stdout.clearLine(0);
+            process.stdout.cursorTo(0);
+            process.stdout.write(percentage.toFixed(2) + "%");
+            progressBar.start(totalNumberofFiles, progress.entries.processed);
+            progressBar.update(progress.entries.processed);
+        });
+
+        //-------------CREATE THE ZIP FILE
+
+        modsWithBundles.forEach((mod) => {
+            console.log("- " + removeText(mod));
+            archive.directory(mod, "user/cache/bundles");
+        });
+
+        console.log("\nCreating Archive (this may take some time).");
+        archive.append("Extract zip contents into SPT root directory.", { name: "Instructions.txt" });
+        archive.finalize();
         output.on("end", function () {
             console.log("Data has been drained");
         });
+
+        archive.pipe(output);
 
         archive.on("warning", (err) => {
             if (err.code === "ENOENT") {
@@ -93,26 +149,6 @@ if (sptFolderExists) {
         archive.on("error", function (err) {
             throw err;
         });
-
-        archive.pipe(output);
-
-        // SHOW SOME WORK IS BEING DONE
-        archive.on("progress", (progress) => {
-            process.stdout.write("\x1B[?25l"); // HIDE CURSOR
-            const percentage = (progress.entries.processed / progress.entries.total) * 100;
-            process.stdout.clearLine(0);
-            process.stdout.cursorTo(0);
-            process.stdout.write(percentage.toFixed(2) + "%");
-        });
-        // CREATE THE ZIP FILE
-        modsWithBundles.forEach((mod) => {
-            console.log("- " + removeText(mod));
-            archive.directory(mod, "user/cache/bundles");
-        });
-
-        console.log("\nCreating Archive (this may take some time).");
-        archive.append("Extract zip contents into SPT root directory.", { name: "Instructions.txt" });
-        archive.finalize();
     } else {
         console.log("None of your mods have bundles, you don't need this script!\n");
         console.log("\nPress any key to exit...");
