@@ -1,15 +1,65 @@
+//-------------DEPENDENCIES
+
 const fs = require("fs");
 const { rmSync, rmdirSync } = require("fs");
 const path = require("path");
 const archiver = require("archiver");
 const cliProgress = require("cli-progress");
+const cliBox = require("cli-box");
 
-//-------------DIRECTORY STRUCTURE-------------
+//-------------DIRECTORY STRUCTURE
 
 const sptRoot = "./user/mods";
 const outputFile = "./modBundles.zip";
 
-//-------------FILESIZE CONVERSION-------------
+//-------------PROJECT INFORMATION
+
+const title = "BUNDLE ARCHIVER";
+const version = "1.0.0";
+const gitLink = "https://www.github.com/spicymanp/bundle-archiver";
+const description = "Find & create an archive of SPT mod bundles";
+
+//-------------A SIMPLE FUNCTION TO DELAY FOR EFFECT
+
+function wait(ms) {
+    var start = Date.now(),
+        now = start;
+    while (now - start < ms) {
+        now = Date.now();
+    }
+}
+
+//-------------CLI BOX WITH INFO
+
+const myBox = new cliBox(
+    {
+        w: 70,
+        h: 7,
+        stringify: false,
+        marks: {
+            nw: "\x1b[32m╭",
+            n: "\x1b[32m─",
+            ne: "\x1b[32m╮",
+            e: "\x1b[32m│",
+            se: "\x1b[32m╯",
+            s: "\x1b[32m─",
+            sw: "\x1b[32m╰",
+            w: "\x1b[32m│",
+        },
+        hAlign: "left",
+    },
+
+    `\t\x1b[33m${title}
+    \t${description}
+
+    \t▸ Version      \x1b[32m:\x1b[33m   ${version}
+    \t▸ Github Link  \x1b[32m:\x1b[33m   ${gitLink}`
+);
+console.log(myBox.stringify());
+wait(1000); //  A SHORT PAUSE FOR EFFECT
+console.log("\x1b[0m"); // RESET CONSOLE COLOUR OUTPUT
+
+//-------------FILESIZE CONVERSION
 
 function formatBytes(a, b = 2) {
     if (!+a) return "0 Bytes";
@@ -76,6 +126,7 @@ if (sptFolderExists) {
         console.log("Number of mods with bundles : " + modsWithBundles.length + "\n");
 
         console.log("Listing mods with bundles:");
+        wait(1000); //  A SHORT PAUSE FOR EFFECT
 
         //-------------ZIP BUNDLES
 
@@ -105,7 +156,7 @@ if (sptFolderExists) {
         //-------------SHOW SOME WORK IS BEING DONE
 
         const progressBar = new cliProgress.SingleBar({
-            format: "{bar}| {percentage}%",
+            format: "|{bar}| {percentage}%",
             barCompleteChar: "\u2588",
             barIncompleteChar: "\u2591",
             hideCursor: true,
@@ -125,8 +176,11 @@ if (sptFolderExists) {
 
         modsWithBundles.forEach((mod) => {
             console.log("- " + removeText(mod));
+            wait(125); //  A SHORT PAUSE FOR EFFECT
             archive.directory(mod, "user/cache/bundles");
         });
+
+        wait(400); //  A SHORT PAUSE FOR EFFECT
 
         console.log("\nCreating Archive (this may take some time).");
         archive.append("Extract zip contents into SPT root directory.", { name: "Instructions.txt" });

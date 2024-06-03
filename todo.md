@@ -4,6 +4,7 @@ High Priority - prior to release
 
 Low Priority - post release
 
+-   explore creating a clickable link that opens users spt root directory after completion
 -   fix percentage done fuckery.
 -   check why overwriting files on extract
 -   rafactor code into functions that make it more elegant, make use of async/await
