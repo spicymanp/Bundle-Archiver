@@ -1,31 +1,32 @@
 High Priority - prior to release
 
--   write a short intro with link to code on github (do in asci ala the scene or something equally cool and decorative (reference SPT ))
+-   include BepinEx\plugins in this
 
-Low Priority - post release
+Low Priority - a post release idea dump in no particular order
 
+-   file hash on each file to determine if you want to include a file/mod in the new zip
+-   allow user to decide the output folder (use a separate json file to allow user to set this up)
+-   expand readme to include more instructions/ideas around a shared google drive folder(or cloud storage of choice) (basically syncing)
 -   explore creating a clickable link that opens users spt root directory after completion
 -   fix percentage done fuckery.
 -   check why overwriting files on extract
--   rafactor code into functions that make it more elegant, make use of async/await
--   add a small delay between listing each mod, for effect. (do this asyncronously)
--   show size of bundles (before compression)
--   progress bar for archiving process
+-   refactor code into functions that make it more elegant, make use of async/await-   
+-   show size of bundles (before compression)-   
 -   add some colour to the various text
 -   log when the last copy was run
 -   check if zip file exists, offer option to delete or overwrite or exit
 -   ask to input spt root folder path (as an option to not run from spt root)
 -   allow for the choice of which mods to then copy and zip
--   expand on user/mods directory check to check for spt root (currently assuming in root)
--   option to only copy files newer than the last copy
--   look into how to integrate 'prompts' npmjs.com/package/prompts
--   measure time taken to complete the task
--   if the process completed in less than a second, print a message highlighting how quick that was
+-   measure time taken to complete the task, if the process completed in less than a second, print a message highlighting how quick that was just for fun
 -   list each mod as it is being added to the archive then add a tick mark to indicate that the mod has been added to the archive
--   sync host settings & mods (possibly better as a seperate utility)
+
 
 Complete :
 
+✔ progress bar for archiving process
+✔ add a small delay between listing each mod, for effect. 
+✔ Create a simple block of text with some info about the project
+✔ Add Fika faq link to readme
 ✔ change the async readdir to sync readdir : <https://www.geeksforgeeks.org/node-js-fs-readdirsync-method/>
 ✔ print only mods with bundles
 ✔ how to copy folder to different path
