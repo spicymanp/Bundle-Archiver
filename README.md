@@ -6,9 +6,14 @@
 -   Are you using server mods that add gear/weapons/weapon skins etc.?
 -   Does your game take forever to load or even crash on launch?
 -   You may be experiencing "bundle problems."
+-   Have a look at the [Fika FAQ on Discord](https://discord.com/channels/1202292159366037545/1234332919443488799/1235518309882007552) if you need more info about this problem.
 -   Some server mods need to send all of the clients bundles of files so the mod works. This can take a long time and/or crash tarkov.
 -   This helps solve this problem in a few simple steps by automating the finding of mod bundles and conveniently zipping them up to easily share with friends.
 -   This mitigates the need for the often time-consuming server-client bundle process.
+
+## Where can I get this? 
+
+-   [Here](https://github.com/spicymanp/Bundle-Archiver/releases/download/v1.0.0/Bundle.Archiver.v1.0.0.exe)
 
 ## Instructions - Server/Host (Person who has all the mod bundles)
 
